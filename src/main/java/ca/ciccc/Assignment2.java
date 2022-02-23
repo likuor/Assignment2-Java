@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.util.Arrays;
+
 /**
  * This is the starter file for the Assignment 2
  *
@@ -22,10 +24,37 @@ public class Assignment2 {
      *
      */
     public String numberLoops(int n) {
-        // Todo: your code goes here
-
+        String result = ".";
+        for (int i = 1; i <= n; i++){
+            for (int k =1; k <= i; k++){
+                result = Integer.toString(k);
+//                System.out.println(result);
+                System.out.print(k);
+            }
+        }
+//        return result;
         return null;
     }
+
+//    public static void main(String[] args) {
+//        int n = 3;
+//        String result = ".";
+//
+//        for (int i = 1; i <= n; i++){
+//            for (int k = 1; k <= n; k++){
+//                if (k > i){
+//                    result = Integer.toString(i);
+//
+//                } else {
+//                    result = ".";
+//
+//                }
+//                System.out.print(result);
+//            }
+//            System.out.println();
+//        }
+//
+//    }
 
     /**
      * Given an array of integers, return true if the number of 1s is greater than the number of 7s
@@ -33,9 +62,22 @@ public class Assignment2 {
      * @return true if the number of 1s is greater than the number of 7s
      */
     public boolean countNumbers(int[] nums) {
-        // Todo: your code goes here
+        int count1 = 0;
+        int count7 = 0;
+        boolean result = false;
 
-        return false;
+        for (int i = 0; i <= nums.length-1; i++){
+            if (nums[i] == 1){
+                count1++;
+            }
+            if (nums[i] == 7){
+                count7++;
+            }
+        }
+        if (count1 > count7){
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -51,9 +93,18 @@ public class Assignment2 {
      * sumExcept13({1, 2, 13, 2, 1, 13} -> 4
      */
     public int sumExcept13(int[] nums) {
-        // Todo: your code goes here
+        int sum = 0;
+        int i = 0;
 
-        return 0;
+        while (i < nums.length){
+            if (nums[i] == 13) {
+                i += 2;
+            } else {
+                sum += nums[i];
+                i += 1;
+            }
+        }
+        return sum;
     }
 
     /**
@@ -68,10 +119,21 @@ public class Assignment2 {
      * shiftArray({7}) -> {7}
      */
     public int[] shiftArray(int[] nums) {
-        // Todo: your code goes here
+        int[] temp = {nums[0]};
 
-        return null;
+        int newNums[] = new int[nums.length - 1];
+        for (int j = 1; j < nums.length; j++) {
+            newNums[j-1] = nums[j];
+        }
+
+        int[] result = new int[newNums.length + temp.length];
+        System.arraycopy(newNums, 0, result, 0, newNums.length);
+        System.arraycopy(temp, 0, result, newNums.length, temp.length);
+        System.out.println(Arrays.toString(result));
+
+        return result;
     }
+
 
     /**
      * Return true if the array contains three increasing adjacent numbers, otherwise false.
@@ -79,8 +141,13 @@ public class Assignment2 {
      * @return true if the array contains three increasing adjacent numbers, otherwise false.
      */
     public boolean tripleIncreasingOrder(int[] nums) {
-        // Todo: your code goes here
-
+        int count = 0;
+        while(count < nums.length){
+            if (nums[count] % 3 == 0){
+                return true;
+            }
+            count++;
+        }
         return false;
     }
 
@@ -90,7 +157,22 @@ public class Assignment2 {
      * @return true if the array contains the same number of odds and even numbers, otherwise false.
      */
     public boolean evenOrOdd(int[] nums){
-        // Todo: your code goes here
+        int count = 0;
+        int odd = 0;
+        int even = 0;
+
+        while(count < nums.length){
+            if (nums[count] % 2 == 0){
+                even ++;
+            }
+            if (nums[count] % 2 == 1){
+                odd ++;
+            }
+            count++;
+        }
+        if (odd == even){
+            return true;
+        }
 
         return false;
     }
